@@ -12,4 +12,16 @@ public class HomeController {
     public String hello() {
         return "Hello! Welcome to the Bar Management Platform!";
     }
+
+    @GetMapping("/logout-page")
+    public String logoutPage() {
+        return "<html><body>"
+                + "<h2>Logout from Bar Management System</h2>"
+                + "<form action='/logout' method='post'>"
+                + "<input type='hidden' name='_csrf' value=''/>"
+                + "<button type='submit'>Logout</button>"
+                + "</form>"
+                + "</body></html>";
+    }
+
 }
