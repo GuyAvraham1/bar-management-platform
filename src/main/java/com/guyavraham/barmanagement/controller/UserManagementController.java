@@ -4,6 +4,7 @@ import com.guyavraham.barmanagement.dto.UserRegistrationDTO;
 import com.guyavraham.barmanagement.model.User;
 import com.guyavraham.barmanagement.model.UserRole;
 import com.guyavraham.barmanagement.service.UserService;
+import com.guyavraham.barmanagement.util.HtmlBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,19 +25,19 @@ public class UserManagementController {
 
     @GetMapping("/register-form")
     public String getRegistrationForm() {
-        return "<html><body>"
-                + "<h2>Register New User</h2>"
-                + "<form action='/api/admin/users/register' method='post'>"
-                + "Username: <input type='text' name='username' required><br><br>"
-                + "Password: <input type='password' name='password' required><br><br>"
-                + "Name: <input type='text' name='name' required><br><br>"
-                + "Role: <select name='role'>"
-                + "<option value='BARTENDER'>Bartender</option>"
-                + "<option value='MANAGER'>Manager</option>"
-                + "</select><br><br>"
-                + "<button type='submit'>Register User</button>"
-                + "</form>"
-                + "</body></html>";
+        String content = "<h2>Register New User</h2>" +
+                "<form action='/api/admin/users/register' method='post'>" +
+                "Username: <input type='text' name='username' required><br><br>" +
+                "Password: <input type='password' name='password' required><br><br>" +
+                "Name: <input type='text' name='name' required><br><br>" +
+                "Role: <select name='role'>" +
+                "<option value='BARTENDER'>Bartender</option>" +
+                "<option value='MANAGER'>Manager</option>" +
+                "</select><br><br>" +
+                "<button type='submit'>Register User</button>" +
+                "</form>";
+
+        return HtmlBuilder.wrapHtml("Register User", content, true);
     }
 
     @PostMapping("/register")
@@ -91,4 +92,5 @@ public class UserManagementController {
 
         return html.toString();
     }
+
 }
